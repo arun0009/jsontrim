@@ -19,7 +19,7 @@ Key features:
 ## Installation
 
 ```bash
-go get [github.com/arun0009/jsontrim](https://github.com/arun0009/jsontrim)
+go get github.com/arun0009/jsontrim
 ```
 ### Quick Start
 
@@ -112,7 +112,7 @@ Hooks{
 
 ## Use Cases
 * **Structured Logging**: Prevent large fields (like massive stack traces, base64 images, or entire HTTP bodies) from **crashing log aggregators** (ELK, Splunk) or consuming excessive bandwidth. jsontrim acts as a safety valve in log hooks.
-* *API Middleware*: Ensure **API responses** strictly adhere to size contracts, preventing issues in client-side applications or with platform limits (e.g., Lambda/API Gateway payload size caps).
+* **API Middleware**: Ensure **API responses** strictly adhere to size contracts, preventing issues in client-side applications or with platform limits (e.g., Lambda/API Gateway payload size caps).
 * **Audit and Compiance**: Use the **Blacklist** (especially with wildcards) to sanitize Personally Identifiable Information (**PII**) or sensitive credentials before persisting the data to an audit log or database.
 * **Event Stream Processing**: Guarantee that messages pushed to queues (Kafka, RabbitMQ, SQS) never exceed topic size limits, avoiding message rejection and processing failures.
 
