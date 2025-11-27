@@ -20,7 +20,9 @@ func TestTrimBasic(t *testing.T) {
 		t.Errorf("Output over limit: %d > 1024", len(out))
 	}
 	var m map[string]interface{}
-	json.Unmarshal(out, &m)
+	if err := json.Unmarshal(out, &m); err != nil {
+		t.Fatalf("Failed to unmarshal: %v", err)
+	}
 	if _, ok := m["id"]; !ok {
 		t.Error("Lost 'id' field")
 	}
@@ -96,7 +98,9 @@ func TestEnforceTotalArrayOrder(t *testing.T) {
 	}
 
 	var arr []map[string]interface{}
-	json.Unmarshal(out, &arr)
+	if err := json.Unmarshal(out, &arr); err != nil {
+		t.Fatalf("Failed to unmarshal: %v", err)
+	}
 
 	if len(arr) != 2 {
 		t.Fatalf("Expected 2 items after trim, got %d. Output: %s", len(arr), out)
@@ -135,7 +139,9 @@ func TestStrategyPrioritize(t *testing.T) {
 		t.Fatal(err)
 	}
 	var m map[string]interface{}
-	json.Unmarshal(out, &m)
+	if err := json.Unmarshal(out, &m); err != nil {
+		t.Fatalf("Failed to unmarshal: %v", err)
+	}
 	if _, ok := m["id"]; !ok {
 		t.Error("'id' not prioritized")
 	}
@@ -156,7 +162,9 @@ func TestEnforceTotalArray(t *testing.T) {
 		t.Errorf("Array over limit: %d > 800", len(out))
 	}
 	var arr []interface{}
-	json.Unmarshal(out, &arr)
+	if err := json.Unmarshal(out, &arr); err != nil {
+		t.Fatalf("Failed to unmarshal: %v", err)
+	}
 	if len(arr) > 2 {
 		t.Error("Too many array items kept")
 	}
@@ -194,7 +202,9 @@ func TestMaxDepth(t *testing.T) {
 	}
 	// Should be truncated at depth 5
 	var m map[string]interface{}
-	json.Unmarshal(out, &m)
+	if err := json.Unmarshal(out, &m); err != nil {
+		t.Fatalf("Failed to unmarshal: %v", err)
+	}
 	if depth := countNests(m); depth > 5 {
 		t.Errorf("Exceeded max depth: %d > 5", depth)
 	}

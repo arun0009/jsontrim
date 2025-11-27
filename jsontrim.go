@@ -373,8 +373,7 @@ func (t *Trimmer) enforceTotal(v interface{}) interface{} {
 		case []interface{}:
 			if strings.HasPrefix(toRemove, "idx:") {
 				var idx int
-				fmt.Sscanf(toRemove[4:], "%d", &idx)
-				if idx >= 0 && idx < len(vv) {
+				if _, err := fmt.Sscanf(toRemove[4:], "%d", &idx); err == nil && idx >= 0 && idx < len(vv) {
 					// Use ReplaceWithMarker if enabled and not already a marker
 					if t.cfg.ReplaceWithMarker && vv[idx] != Marker {
 						vv[idx] = Marker

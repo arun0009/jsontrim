@@ -1,6 +1,6 @@
 # jsontrim
 
-[![Go](https://github.com/arun0009/jsontrim/workflows/Go/badge.svg)](https://github.com/arun0009/jsontrim/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/arun0009/jsontrim/ci.yml?branch=main&logo=github)](https://github.com/arun0009/jsontrim/actions/workflows/ci.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/arun0009/jsontrim)](https://goreportcard.com/report/github.com/arun0009/jsontrim)
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/arun0009/jsontrim)](https://pkg.go.dev/github.com/arun0009/jsontrim)
 
