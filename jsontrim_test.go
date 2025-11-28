@@ -8,7 +8,6 @@ import (
 )
 
 func TestTrimBasic(t *testing.T) {
-	// FIX 1: Removed unnecessary escape sequence (\") which caused "unexpected end of JSON input".
 	raw := []byte(`{"id":"123","data":"` + strings.Repeat("x", 2000) + `"}`)
 	trimmer := New(Config{FieldLimit: 500, TotalLimit: 1024, TruncateStrings: true})
 
@@ -170,7 +169,6 @@ func TestEnforceTotalArray(t *testing.T) {
 	}
 }
 
-// FIX 3: Corrected the backtick literal and simplified the data.
 // Tests the defensive check for untrimmable data.
 func TestErrCannotTrim(t *testing.T) {
 	// Raw string is ~52 bytes. Limit is 10. TruncateStrings is false.

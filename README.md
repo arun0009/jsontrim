@@ -83,7 +83,7 @@ Pass a `Config` to `New()`:
 Uses dot-notation. Supports * as a wildcard for array indices or dynamic map keys.
 
 * "user.password": Matches exact path.
-* "users.*.password": Matches password inside any object in the users array (e.g., users[0].password, users[1].password).
+* "users.*.password": Matches password inside any element in `users` (e.g., array index `users[0].password` or map key `users.primary.password`).
 * "logs.*": Matches everything inside logs.
 
 ## Hooks Example

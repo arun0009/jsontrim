@@ -50,7 +50,7 @@ var (
 	Marker = "[TRIMMED]"
 )
 
-// SelectNextToRemove for RemoveLargest: Finds the largest by approximate size (Performance fix).
+// SelectNextToRemove for RemoveLargest: Finds the largest by approximate size.
 func (s RemoveLargest) SelectNextToRemove(v interface{}) string {
 	switch vv := v.(type) {
 	case map[string]interface{}:
