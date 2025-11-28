@@ -46,7 +46,7 @@ func main() {
 		TotalLimit:        1024,
 		Blacklist:         []string{"users.*.pass"}, // Wildcard support
 		ReplaceWithMarker: true,                     // Leave a trace of what was removed
-		Strategy:          jsontrim.RemoveLargest(""),
+		Strategy:          jsontrim.RemoveLargest{},
 	})
 
 	out, err := trimmer.Trim(raw)
@@ -67,14 +67,14 @@ Pass a `Config` to `New()`:
 - **TotalLimit** (`int`, default: 1024): Max total output bytes.
 - **Blacklist** (`[]string`, default: `[]`): Dot-notation paths to exclude. Supports * wildcards.
 - **ReplaceWithMarker** (bool, default: false): If true, removed fields/items are replaced with "[TRIMMED]" string value instead of being deleted. Useful for debugging.
-- **Strategy** (`TruncStrategy`, default: `RemoveLargest`): Removal policy: `RemoveLargest("")`, `FIFO{}`, or `PrioritizeKeys`.
+- **Strategy** (`TruncStrategy`, default: `RemoveLargest`): Removal policy: `RemoveLargest{}`, `FIFO{}`, or `PrioritizeKeys`.
 - **MaxDepth** (`int`, default: 10): Recursion depth to prevent stack overflows.
 - **TruncateStrings** (`bool`, default: `false`): Append "..." to oversized strings instead of dropping.
 - **Hooks** (`Hooks`, default: `{}`): `PreTrim`/`PostTrim` funcs for custom logic.
 
 ## Strategies
 
-* `RemoveLargest("")`: Greedily drops the biggest fields/items to maximize retention (default).
+* `RemoveLargest{}`: Greedily drops the biggest fields/items to maximize retention (default).
 * `FIFO{}`: Removes in iteration order (faster for ordered data).
 * `PrioritizeKeys{KeepKeys: []string{"id", "ts"}, Fallback: &FIFO{}}`: Delays removal of key fields.
 

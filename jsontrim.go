@@ -35,7 +35,7 @@ type TruncStrategy interface {
 
 // Built-in strategies.
 type (
-	RemoveLargest  string
+	RemoveLargest  struct{}
 	FIFO           struct{}
 	PrioritizeKeys struct {
 		KeepKeys []string
@@ -151,7 +151,7 @@ func New(cfg Config) *Trimmer {
 		cfg.MaxDepth = 10
 	}
 	if cfg.Strategy == nil {
-		cfg.Strategy = RemoveLargest("")
+		cfg.Strategy = RemoveLargest{}
 	}
 	if cfg.Hooks.PreTrim == nil {
 		cfg.Hooks.PreTrim = func(v interface{}) interface{} { return v }
